@@ -53,7 +53,7 @@ input,select,textarea{font-family:inherit;font-size:16px}
 .icon-btn:hover{background:var(--soft-cloud)}
 .bag-count{position:absolute;top:2px;right:0;background:var(--ink);color:var(--canvas);font-size:10px;font-weight:700;min-width:16px;height:16px;border-radius:var(--r-full);display:flex;align-items:center;justify-content:center;padding:0 4px}
 @media(max-width:960px){.nav-links{display:none}.search-pill{width:120px}}
-@media(max-width:640px){.search-pill{width:40px;padding:8px}.search-pill input,.search-pill svg{display:none}}
+@media(max-width:640px){.search-pill{width:40px;height:40px;border-radius:var(--r-full);padding:0;justify-content:center}.search-pill input{display:none}}
 
 /* ============ HERO ============ */
 .hero{background:var(--ink);color:var(--canvas);position:relative;overflow:hidden;display:flex}
@@ -61,10 +61,10 @@ input,select,textarea{font-family:inherit;font-size:16px}
   radial-gradient(ellipse 60% 80% at 75% 20%,rgba(255,255,255,.10),transparent 60%),
   radial-gradient(ellipse 50% 60% at 15% 90%,rgba(255,255,255,.06),transparent 60%),
   repeating-linear-gradient(115deg,transparent 0 140px,rgba(255,255,255,.045) 140px 142px),var(--ink)}
-.hero-art{position:absolute;right:2%;top:8%;height:84%;opacity:.95;filter:drop-shadow(0 20px 40px rgba(0,0,0,.4))}
+.hero-art{position:absolute;right:0;top:16%;height:68%;opacity:.95;filter:drop-shadow(0 20px 40px rgba(0,0,0,.4))}
 .hero-content{position:relative;display:flex;flex-direction:column;justify-content:center;padding:80px 0 120px}
 .eyebrow{font-weight:500;margin-bottom:12px}
-.campaign-display{font-family:var(--font-display);font-size:88px;line-height:.9;text-transform:uppercase;font-weight:500;max-width:14ch}
+.campaign-display{font-family:var(--font-display);font-size:84px;line-height:.9;text-transform:uppercase;font-weight:500;max-width:12ch;position:relative;z-index:2}
 .campaign-display .outline{color:transparent;-webkit-text-stroke:2px var(--canvas)}
 .hero-cta{position:absolute;bottom:48px;left:0}
 @media(max-width:960px){.campaign-display{font-size:60px}.hero-art{opacity:.35}}
