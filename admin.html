@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAMMA TV — Admin Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Product-art symbols (needed for thumbnails here too; keep in sync with index.html) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="art-tv" viewBox="0 0 240 180">
+    <rect x="22" y="34" width="196" height="110" rx="6" fill="var(--p-body)"/>
+    <rect x="28" y="40" width="184" height="94" rx="3" fill="var(--p-accent)" opacity=".8"/>
+    <rect x="32" y="44" width="176" height="86" rx="2" fill="var(--p-body)" opacity=".95"/>
+    <rect x="64" y="86" width="28" height="22" rx="4" fill="var(--p-accent)"/>
+    <rect x="100" y="70" width="40" height="38" rx="4" fill="var(--p-accent)" opacity=".7"/>
+    <rect x="148" y="94" width="24" height="14" rx="4" fill="var(--p-accent)" opacity=".5"/>
+  </symbol>
+  <symbol id="art-box" viewBox="0 0 240 180">
+    <rect x="36" y="96" width="168" height="46" rx="12" fill="var(--p-body)"/>
+    <circle cx="178" cy="119" r="6" fill="var(--p-accent)"/>
+    <rect x="52" y="112" width="60" height="4" rx="2" fill="var(--p-accent)" opacity=".6"/>
+    <rect x="52" y="120" width="44" height="4" rx="2" fill="var(--p-accent)" opacity=".4"/>
+    <rect x="96" y="30" width="64" height="60" rx="8" fill="var(--p-body)"/>
+    <rect x="104" y="38" width="48" height="44" rx="4" fill="var(--p-accent)" opacity=".85"/>
+    <rect x="108" y="42" width="40" height="36" rx="3" fill="var(--p-body)" opacity=".9"/>
+  </symbol>
+  <symbol id="art-headphones" viewBox="0 0 240 180">
+    <path d="M44 96 A76 76 0 0 1 196 96" fill="none" stroke="var(--p-body)" stroke-width="14" stroke-linecap="round"/>
+    <rect x="28" y="90" width="40" height="62" rx="16" fill="var(--p-body)"/>
+    <rect x="172" y="90" width="40" height="62" rx="16" fill="var(--p-body)"/>
+    <rect x="38" y="100" width="20" height="42" rx="8" fill="var(--p-accent)"/>
+    <rect x="182" y="100" width="20" height="42" rx="8" fill="var(--p-accent)"/>
+  </symbol>
+  <symbol id="art-earbuds" viewBox="0 0 240 180"><circle cx="92" cy="70" r="24" fill="var(--p-body)"/><circle cx="148" cy="70" r="24" fill="var(--p-body)"/><path d="M84 90 q-8 34 6 44 q14 6 20-36" fill="var(--p-body)"/><path d="M156 90 q8 34 -6 44 q-14 6 -20-36" fill="var(--p-body)"/><circle cx="92" cy="70" r="9" fill="var(--p-accent)"/><circle cx="148" cy="70" r="9" fill="var(--p-accent)"/><rect x="70" y="120" width="100" height="36" rx="18" fill="var(--p-accent)" opacity=".92"/></symbol>
+  <symbol id="art-speaker" viewBox="0 0 240 180"><rect x="66" y="26" width="108" height="128" rx="24" fill="var(--p-body)"/><circle cx="120" cy="70" r="22" fill="var(--p-accent)"/><circle cx="120" cy="70" r="9" fill="var(--p-body)"/><g fill="var(--p-accent)" opacity=".9"><circle cx="120" cy="118" r="6"/><circle cx="104" cy="130" r="6"/><circle cx="136" cy="130" r="6"/><circle cx="120" cy="142" r="6"/></g></symbol>
+  <symbol id="art-laptop" viewBox="0 0 240 180"><rect x="52" y="28" width="136" height="92" rx="8" fill="var(--p-body)"/><rect x="62" y="38" width="116" height="72" rx="4" fill="var(--p-accent)" opacity=".85"/><rect x="66" y="42" width="108" height="64" rx="3" fill="var(--p-body)" opacity=".94"/><path d="M34 124 L206 124 L216 142 Q218 148 210 148 L30 148 Q22 148 24 142 Z" fill="var(--p-body)"/></symbol>
+  <symbol id="art-desktop" viewBox="0 0 240 180"><rect x="92" y="18" width="56" height="144" rx="10" fill="var(--p-body)"/><circle cx="120" cy="42" r="10" fill="var(--p-accent)"/><rect x="104" y="66" width="32" height="5" rx="2.5" fill="var(--p-accent)" opacity=".8"/><rect x="104" y="78" width="32" height="5" rx="2.5" fill="var(--p-accent)" opacity=".8"/></symbol>
+  <symbol id="art-phone" viewBox="0 0 240 180"><rect x="94" y="18" width="52" height="144" rx="14" fill="var(--p-body)"/><rect x="101" y="26" width="38" height="128" rx="9" fill="var(--p-accent)" opacity=".22"/><rect x="108" y="52" width="24" height="24" rx="7" fill="var(--p-accent)"/><rect x="108" y="82" width="24" height="24" rx="7" fill="var(--p-accent)" opacity=".6"/></symbol>
+  <symbol id="art-camera" viewBox="0 0 240 180"><rect x="44" y="58" width="152" height="86" rx="12" fill="var(--p-body)"/><rect x="88" y="44" width="48" height="18" rx="8" fill="var(--p-body)"/><circle cx="120" cy="101" r="30" fill="#f0f0f0"/><circle cx="120" cy="101" r="22" fill="var(--p-accent)"/><circle cx="120" cy="101" r="10" fill="var(--p-body)"/><circle cx="170" cy="74" r="5" fill="var(--p-accent)"/></symbol>
+  <symbol id="art-watch" viewBox="0 0 240 180"><rect x="108" y="18" width="24" height="42" rx="8" fill="var(--p-body)"/><rect x="108" y="120" width="24" height="42" rx="8" fill="var(--p-body)"/><rect x="86" y="52" width="68" height="76" rx="20" fill="var(--p-body)"/><rect x="96" y="62" width="48" height="56" rx="14" fill="var(--p-accent)" opacity=".9"/><rect x="154" y="76" width="8" height="18" rx="4" fill="var(--p-accent)"/></symbol>
+  <symbol id="art-monitor" viewBox="0 0 240 180"><rect x="36" y="26" width="168" height="104" rx="10" fill="var(--p-body)"/><rect x="46" y="36" width="148" height="84" rx="5" fill="var(--p-accent)" opacity=".85"/><rect x="50" y="40" width="140" height="76" rx="4" fill="var(--p-body)" opacity=".94"/></symbol>
+  <symbol id="art-keyboard" viewBox="0 0 240 180"><rect x="26" y="62" width="188" height="62" rx="12" fill="var(--p-body)"/><g fill="var(--p-accent)" opacity=".9"><rect x="36" y="70" width="26" height="14" rx="4"/><rect x="68" y="70" width="26" height="14" rx="4"/><rect x="100" y="70" width="26" height="14" rx="4"/><rect x="132" y="70" width="26" height="14" rx="4"/><rect x="164" y="70" width="26" height="14" rx="4"/><rect x="196" y="70" width="8" height="14" rx="4"/></g><rect x="84" y="110" width="72" height="12" rx="6" fill="var(--p-accent)"/></symbol>
+  <symbol id="art-mouse" viewBox="0 0 240 180"><path d="M120 22 C160 22 178 54 178 92 C178 128 156 152 120 152 C84 152 62 128 62 92 C62 54 80 22 120 22 Z" fill="var(--p-body)"/><line x1="120" y1="26" x2="120" y2="152" stroke="var(--p-body)" stroke-width="4"/><rect x="100" y="22" width="20" height="16" rx="3" fill="var(--p-accent)" opacity=".9"/><rect x="130" y="118" width="30" height="10" rx="5" fill="var(--p-accent)"/></symbol>
+  <symbol id="art-drone" viewBox="0 0 240 180"><ellipse cx="60" cy="52" rx="30" ry="7" fill="var(--p-accent)" opacity=".9"/><ellipse cx="180" cy="52" rx="30" ry="7" fill="var(--p-accent)" opacity=".9"/><line x1="72" y1="62" x2="102" y2="82" stroke="var(--p-body)" stroke-width="8" stroke-linecap="round"/><line x1="168" y1="62" x2="138" y2="82" stroke="var(--p-body)" stroke-width="8" stroke-linecap="round"/><line x1="72" y1="120" x2="102" y2="100" stroke="var(--p-body)" stroke-width="8" stroke-linecap="round"/><line x1="168" y1="120" x2="138" y2="100" stroke="var(--p-body)" stroke-width="8" stroke-linecap="round"/><rect x="98" y="76" width="44" height="30" rx="10" fill="var(--p-body)"/><circle cx="120" cy="91" r="7" fill="var(--p-accent)"/></symbol>
+</svg>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginScreen" class="confirm-card" style="display:flex;min-height:100vh;align-items:center;justify-content:center">
+  <div style="width:100%;max-width:400px;text-align:left">
+    <p class="logo" style="margin-bottom:32px;font-size:28px"><b>LAMMA TV</b></p>
+    <h2 style="font-weight:500;font-size:24px;margin-bottom:8px">Admin Console</h2>
+    <p style="color:var(--mute);margin-bottom:24px;font-size:14px">Default password: <b>lamma2026</b> — change it in Settings → Security</p>
+    <div class="field"><label>Username</label><input id="loginUser" autocomplete="username" value="admin"></div>
+    <div class="field"><label>Password</label><input id="loginPass" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+    <button class="btn-primary" style="width:100%" onclick="adminLogin()">Sign In</button>
+    <p id="loginError" style="color:var(--sale);font-weight:500;font-size:14px;margin-top:12px;display:none">Wrong username or password.</p>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="adminApp" style="display:none">
+  <div class="admin-topbar">
+    <span class="logo" style="font-size:16px"><b>LAMMA TV</b></span>
+    <span class="admin-flag" style="font-size:11px">ADMIN</span>
+    <span style="flex:1"></span>
+    <select id="mobileView" style="background:var(--ink);color:var(--canvas);border:1px solid var(--charcoal);border-radius:var(--r-full);height:40px;padding:0 12px;font-weight:500">
+      <option value="dashboard">Dashboard</option>
+      <option value="products">Products</option>
+      <option value="orders">Orders</option>
+      <option value="settings">Settings</option>
+    </select>
+  </div>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-side-logo">LAMMA TV<small>Admin Console</small></div>
+      <button class="admin-nav-btn active" data-view="dashboard">▦ Dashboard</button>
+      <button class="admin-nav-btn" data-view="products">⛁ Products <span id="sideProdCount" style="margin-left:auto;opacity:.6"></span></button>
+      <button class="admin-nav-btn" data-view="orders">✆ Orders <span id="sideOrderCount" style="margin-left:auto;opacity:.6"></span></button>
+      <button class="admin-nav-btn" data-view="settings">⚙ Settings</button>
+      <span style="flex:1"></span>
+      <a class="admin-nav-btn" href="index.html">⇱ View Storefront</a>
+      <button class="admin-nav-btn" id="logoutBtn">⏻ Sign Out</button>
+    </aside>
+    <div class="admin-main" id="adminMain"></div>
+  </div>
+</div>
+
+<!-- ============ PRODUCT EDIT MODAL ============ -->
+<div class="modal-backdrop" id="prodModal">
+  <div class="modal">
+    <button class="icon-btn modal-close" onclick="closeProdModal()" style="background:var(--soft-cloud)">✕</button>
+    <h2 id="prodModalTitle">Add Product</h2>
+    <form id="prodForm">
+      <div class="form-grid">
+        <div class="field" style="grid-column:1/-1"><label>Name</label><input name="name" required placeholder="IPTV — 1 Month · 1 Device"></div>
+        <div class="field" style="grid-column:1/-1"><label>Subtitle</label><input name="sub" required placeholder="All channels + VOD"></div>
+        <div class="field"><label>Category</label><select name="category" id="prodCat"></select></div>
+        <div class="field"><label>Product shape (image)</label><select name="icon" id="prodIcon">
+          <option value="tv">TV</option><option value="box">IPTV Box</option>
+          <option value="headphones">Headphones</option><option value="earbuds">Earbuds</option><option value="speaker">Speaker</option>
+          <option value="laptop">Laptop</option><option value="desktop">Desktop</option><option value="phone">Phone</option>
+          <option value="camera">Camera</option><option value="watch">Watch</option><option value="monitor">Monitor</option>
+          <option value="keyboard">Keyboard</option><option value="mouse">Mouse</option><option value="drone">Drone</option>
+        </select></div>
+        <div class="field"><label>Price</label><input name="price" type="number" min="0" step="1" required></div>
+        <div class="field"><label>Compare-at price (for sales)</label><input name="pricePrev" type="number" min="0" step="1" placeholder="empty = not on sale"></div>
+        <div class="field"><label>Stock</label><input name="stock" type="number" min="0" step="1" required></div>
+        <div class="field"><label>Type</label><select name="digital"><option value="false">Physical product (ships)</option><option value="true">Digital (IPTV — instant activation)</option></select></div>
+        <div class="field"><label>Badge</label><select name="badge"><option value="none">None</option><option value="just-in">Just In</option><option value="sale">Sale</option><option value="member">Most Popular</option></select></div>
+        <div class="field" style="grid-column:1/-1"><label>Description</label><textarea name="desc" placeholder="Key details, shown on the product page…"></textarea></div>
+        <div class="field"><label>Body color</label><input name="color" type="color" value="#171717" style="height:48px;padding:4px"></div>
+        <div class="field"><label>Accent color</label><input name="accent" type="color" value="#3f6a8a" style="height:48px;padding:4px"></div>
+        <div style="grid-column:1/-1;background:var(--soft-cloud);display:flex;justify-content:center;padding:16px" id="prodPreview"></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button type="submit" class="btn-primary" style="flex:1">Save to Working Copy</button>
+        <button type="button" class="btn-secondary" onclick="closeProdModal()">Cancel</button>
+      </div>
+      <p style="font-size:12px;color:var(--mute);margin-top:12px">Saves to your browser's working copy. Hit <b>Publish</b> to push changes live for all visitors.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ PUBLISH MODAL ============ -->
+<div class="modal-backdrop" id="publishModal">
+  <div class="modal">
+    <button class="icon-btn modal-close" onclick="document.getElementById('publishModal').classList.remove('open')" style="background:var(--soft-cloud)">✕</button>
+    <h2>Publish to Live Site</h2>
+    <p style="color:var(--mute);font-size:14px;margin-bottom:24px">Push your working copy to <b>store.json</b>. With a GitHub token it goes live in ~1 minute for everyone. Without one, download the file and upload it to the repo yourself (Add file → store.json → Commit).</p>
+    <div class="field"><label>GitHub repo (owner/name)</label><input id="ghRepo" placeholder="youruser/lammatv"></div>
+    <div class="field"><label>GitHub token (Contents: read &amp; write, this repo only — stays in this browser)</label><input id="ghToken" type="password" placeholder="github_pat_…"></div>
+    <div style="display:flex;gap:8px;margin-top:16px">
+      <button class="btn-primary" style="flex:1;background:#1eaa52" onclick="publishGitHub()">Publish via GitHub</button>
+      <button class="btn-secondary" onclick="downloadStoreJson()">Download store.json</button>
+    </div>
+    <p id="publishStatus" style="font-size:14px;font-weight:500;margin-top:16px;color:var(--mute)"></p>
+  </div>
+</div>
+
+<!-- ============ MANUAL ORDER MODAL ============ -->
+<div class="modal-backdrop" id="orderModal">
+  <div class="modal">
+    <button class="icon-btn modal-close" onclick="document.getElementById('orderModal').classList.remove('open')" style="background:var(--soft-cloud)">✕</button>
+    <h2>Log a WhatsApp Sale</h2>
+    <form id="orderForm">
+      <div class="form-grid">
+        <div class="field"><label>Customer name</label><input name="name" required placeholder="Ahmed B."></div>
+        <div class="field"><label>Total paid</label><input name="total" type="number" min="0" step="1" required></div>
+        <div class="field" style="grid-column:1/-1"><label>What did they buy?</label><input name="items" required placeholder="1× IPTV 12 Months, 1× Lamma Box"></div>
+        <div class="field" style="grid-column:1/-1"><label>Status</label><select name="status"><option>Delivered</option><option>Shipped</option><option>Processing</option><option>New</option><option>Cancelled</option></select></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <button class="btn-primary" style="flex:1;background:#1eaa52" type="button" onclick="logOrder()">Log Sale</button>
+        <button class="btn-secondary" type="button" onclick="document.getElementById('orderModal').classList.remove('open')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast">Saved</div>
+
+<script src="data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
