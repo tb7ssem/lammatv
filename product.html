@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — LAMMA TV</title>
+<meta name="description" content="Product details — LAMMA TV: IPTV subscriptions and electronics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>L</text></svg>">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" id="sprite"></svg>
+
+<!-- ============ UTILITY BAR ============ -->
+<div class="utility-bar">
+  <div class="container">
+    <div class="logo" style="font-size:14px;font-family:var(--font-ui);font-weight:500">LAMMA TV</div>
+    <div class="utility-links">
+      <span>Free 24h trial · Instant WhatsApp activation</span>
+      <a href="https://wa.me/21658877141" target="_blank" rel="noopener" class="admin-flag" style="background:#1eaa52" data-wa>WhatsApp Us</a>
+      <a href="index.html#faq">Support</a><a href="admin.html" style="color:var(--mute)">Admin</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PRIMARY NAV ============ -->
+<nav class="primary-nav"><div class="container" id="navContainer"></div></nav>
+
+<main>
+  <div class="container">
+    <div class="breadcrumb" id="crumb"><a href="index.html">Home</a> / <a href="shop.html" id="crumbCat">Shop</a> / <span style="color:var(--ink)" id="crumbName"></span></div>
+    <div class="pdp-layout" id="pdp" style="margin-bottom:48px"></div>
+    <section id="relatedSection" style="padding:0 0 48px;display:none">
+      <div class="section-header"><h2 class="heading-xl">You Might Also Like</h2></div>
+      <div class="product-grid" id="relatedGrid"></div>
+    </section>
+  </div>
+</main>
+
+<div id="siteFooter"></div>
+
+<a class="wa-float" href="https://wa.me/21658877141" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-wa>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.7-.2-.4A8 8 0 0 1 12 4z"/></svg>
+</a>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <span>Bag <small id="cartHeadCount" style="color:var(--mute)"></small></span>
+    <button class="icon-btn" id="cartClose" style="background:var(--soft-cloud)">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-line"><span>Subtotal</span><span id="cartSubtotal">–</span></div>
+    <button class="btn-primary" style="width:100%;margin-top:8px;background:#1eaa52" id="checkoutBtn">Order via WhatsApp</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast">Added to Bag</div>
+
+<script src="data.js"></script>
+<script src="sprite.js"></script>
+<script src="common.js"></script>
+<script src="product.js"></script>
+</body>
+</html>

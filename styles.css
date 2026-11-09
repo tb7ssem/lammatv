@@ -99,6 +99,11 @@ section{padding:var(--s-section) 0}
 .product-card-image{background:var(--soft-cloud);aspect-ratio:1/1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .product-card-image svg{width:72%;height:auto;transition:transform .25s}
 .product-card:hover .product-card-image svg{transform:scale(1.06) rotate(-2deg)}
+.card-add{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:var(--r-full);background:var(--ink);color:var(--canvas);font-size:20px;font-weight:500;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;z-index:2}
+.product-card:hover .card-add,.product-card:focus-within .card-add{opacity:1;transform:translateY(0)}
+.card-add:hover{background:#2f2f2f}
+@media (hover:none){.card-add{opacity:1;transform:none}}
+.modal-actions{display:flex;gap:8px}
 .badge-promo{position:absolute;top:12px;left:12px;background:var(--canvas);border:1px solid var(--hairline);font-size:12px;font-weight:500;border-radius:var(--r-full);padding:4px 12px;z-index:2}
 .card-meta{padding:12px 2px 0}
 .product-name{font-weight:500;font-size:16px}
