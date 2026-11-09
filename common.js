@@ -83,12 +83,12 @@ function renderFooter(){
     <div class="footer-cols">
       <div><h4>IPTV</h4><a href="shop.html?cat=iptv">All Plans</a><a href="product.html?id=1">Free Trial</a><a href="product.html?id=6">12 Months Plan</a><a href="product.html?id=8">Lamma Box Bundle</a></div>
       <div><h4>Shop</h4>${CATEGORIES.slice(1,5).map(c=>`<a href="shop.html?cat=${c.toLowerCase()}">${c}</a>`).join('')}</div>
-      <div><h4>Help</h4><a href="https://wa.me/${s.whatsapp}" target="_blank" rel="noopener">WhatsApp Support</a><a href="index.html#faq">Activation Guide</a><a href="#">Refund Policy</a></div>
+      <div><h4>Help</h4><a href="https://wa.me/${s.whatsapp}" target="_blank" rel="noopener">WhatsApp Support</a><a href="index.html#faq">Activation Guide</a><a href="refund.html">Refund Policy</a></div>
       <div><h4>Admin</h4><a href="admin.html">Admin Console</a></div>
     </div>
     <div class="fine-print">
       <span>© 2026 ${s.storeName}. Design system: VoltAgent/awesome-design-md (Nike spec). Demo build — payments handled on WhatsApp.</span>
-      <span>WhatsApp: +${s.whatsapp} · Terms of Use · Privacy Policy</span>
+      <span>WhatsApp: +${s.whatsapp} · <a href="terms.html" style="color:inherit">Terms of Use</a> · <a href="privacy.html" style="color:inherit">Privacy Policy</a> · <a href="refund.html" style="color:inherit">Refund Policy</a></span>
     </div>
   </div></footer>`;
 }
