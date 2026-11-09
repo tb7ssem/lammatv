@@ -11,7 +11,13 @@ function adminLogin(){
   const u = document.getElementById('loginUser').value.trim();
   const p = document.getElementById('loginPass').value;
   const pass = localStorage.getItem(PASS_KEY) || 'lamma2026';
-  if(u==='admin' && p===pass){ sessionStorage.setItem('lammatv_admin','1'); enterApp(); }
+  if(u==='admin' && p===pass){
+    sessionStorage.setItem('lammatv_admin','1');
+    if(window.store) enterApp();
+    else { // store still loading — wait for it
+      const wait = setInterval(()=>{ if(window.store){ clearInterval(wait); enterApp(); } }, 100);
+    }
+  }
   else document.getElementById('loginError').style.display='block';
 }
 function enterApp(){ document.getElementById('loginScreen').style.display='none'; document.getElementById('adminApp').style.display='block'; renderAdmin(); }
@@ -342,4 +348,8 @@ function downloadStoreJson(){
 
 /* ---------- INIT ---------- */
 document.getElementById('prodCat').innerHTML = CATEGORIES.map(c=>`<option>${c}</option>`).join('');
-if(sessionStorage.getItem('lammatv_admin')==='1') enterApp();
+(async function initAdmin(){
+  window.store = await loadStoreData();
+  renderAdmin();
+  if(sessionStorage.getItem('lammatv_admin')==='1') enterApp();
+})();
